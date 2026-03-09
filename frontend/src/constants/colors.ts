@@ -1,0 +1,8 @@
+export const COLORS = {
+    PRIMARY: "#2793C3",
+    PRIMARY_HOVER: "#1F7DA6",
+    PRIMARY_ACTIVE: "#186487",
+    PRIMARY_LIGHT: "#E6F4FA",
+    SUCCESS: "#2F855A",
+    WARNING: "#D69E2E"
+}
