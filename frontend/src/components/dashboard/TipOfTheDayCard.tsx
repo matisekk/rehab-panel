@@ -6,7 +6,7 @@ type TipOfTheDayCardProps = {
 
 const TipOfTheDayCard = ({ tip = "Your therapist will assign a rehabilitation plan soon" }: TipOfTheDayCardProps) => {
     return (
-        <Card.Root variant="outline" borderRadius="2xl">
+        <Card.Root variant="outline" borderRadius="2xl" data-testid="tipOfTheDayCard">
             <Card.Body>
                 <Stack gap="4">
                     <Heading size="md">Tip of the Day</Heading>

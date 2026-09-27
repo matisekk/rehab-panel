@@ -14,7 +14,7 @@ const TodayGoalCard = ({
     const hasPlan = totalExercises > 0;
 
     return (
-        <Card.Root variant="outline" borderRadius="2xl">
+        <Card.Root variant="outline" borderRadius="2xl" data-testid="todayGoalCard">
             <Card.Body>
                 <Stack gap="4">
                     <Heading size="md">Today's Goal</Heading>

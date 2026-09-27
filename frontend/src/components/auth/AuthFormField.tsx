@@ -15,17 +15,18 @@ interface IauthFormFieldProps {
 const AuthFormField = ({ label, name, onChange, placeholder, value, error, required, type }: IauthFormFieldProps) => {
     return (
         <Field.Root required={required} invalid={!!error}>
-            <Field.Label>
+            <Field.Label htmlFor={name}>
                 {label} {required && <Field.RequiredIndicator />}
             </Field.Label>
             <Input
+                id={name}
                 type={type}
                 name={name}
                 value={value}
                 placeholder={placeholder}
                 onChange={onChange}
             />
-            {error && <Field.ErrorText>{error}</Field.ErrorText>}
+            {error && <Field.ErrorText data-testid={`error-message-${name}`}>{error}</Field.ErrorText>}
         </Field.Root>
     )
 }

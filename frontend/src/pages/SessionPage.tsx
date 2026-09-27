@@ -82,7 +82,7 @@ export default function SessionPage({
                   <Text color="fg.muted">{progressValue}%</Text>
                 </HStack>
 
-                <Progress.Root value={progressValue} colorPalette="teal">
+                <Progress.Root value={progressValue} colorPalette="teal" role="progressbar">
                   <Progress.Track>
                     <Progress.Range />
                   </Progress.Track>

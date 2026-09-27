@@ -66,7 +66,7 @@ const ChangePasswordCard = ({ onClose }: ChangePasswordCardProps) => {
     };
 
     return (
-        <Card.Root variant="outline" borderRadius="xl">
+        <Card.Root variant="outline" borderRadius="xl" data-testid="changePasswordCardModal">
             <Card.Body>
                 <Stack gap="4">
                     <Heading size="md">Change password</Heading>

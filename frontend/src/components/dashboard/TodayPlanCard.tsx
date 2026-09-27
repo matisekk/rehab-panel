@@ -58,7 +58,7 @@ const TodayPlanCard = ({
 
   if (!data?.plan) {
     return (
-      <Card.Root variant="outline" borderRadius="2xl">
+      <Card.Root variant="outline" borderRadius="2xl" data-testid="todayPlanCard">
         <Card.Body>
           <Stack gap="3">
             <Heading size="md">Today's Exercises</Heading>
@@ -72,7 +72,7 @@ const TodayPlanCard = ({
   }
 
   return (
-    <Stack gap="4">
+    <Stack gap="4" data-testid="todayPlanCard">
       <Box>
         <Heading size="md">Today's Exercises</Heading>
         <Heading mt="3" size="xl" letterSpacing="tight">
@@ -93,7 +93,7 @@ const TodayPlanCard = ({
           const buttonIcon = isInProgress ? LuRefreshCcw : LuPlay;
 
           return (
-            <GridItem key={exercise.id}>
+            <GridItem key={exercise.id} data-testid={`exercise-card-${exercise.id}`}>
               <Card.Root
                 variant="outline"
                 borderRadius="2xl"
@@ -120,6 +120,7 @@ const TodayPlanCard = ({
                       </Box>
 
                       <Badge
+                        data-testid={`exercise-status-${exercise.id}`}
                         colorPalette={getStatusColor(exercise.status)}
                         borderRadius="full"
                         px="3"

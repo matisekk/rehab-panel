@@ -42,7 +42,7 @@ const ProfileSummaryCard = ({ onProfileUpdated, onClose }: ProfileSummaryCardPro
       }
       try {
         await changePersonalInfo(token, body)
-        
+
         await dispatch(fetchMe()).unwrap();
         await onProfileUpdated?.();
         onClose();
@@ -66,7 +66,7 @@ const ProfileSummaryCard = ({ onProfileUpdated, onClose }: ProfileSummaryCardPro
   };
 
   return (
-    <Card.Root variant="outline" borderRadius="xl">
+    <Card.Root variant="outline" borderRadius="xl" data-testid="profileSummaryCardModal">
       <Card.Body>
         <Stack gap="4">
           <Heading size="md">Personal information</Heading>

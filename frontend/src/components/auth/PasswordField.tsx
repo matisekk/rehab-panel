@@ -18,12 +18,13 @@ const PasswordField = ({ label, name, onChange, placeholder, value, error, requi
 
     return (
         <Field.Root required={required} invalid={!!error}>
-            <Field.Label>
+            <Field.Label htmlFor={name}>
                 {label} {required && <Field.RequiredIndicator />}
             </Field.Label>
 
             <Group attached w="full">
                 <Input
+                    id={name}
                     type={showPassword ? "text" : "password"}
                     name={name}
                     value={value}
@@ -44,7 +45,7 @@ const PasswordField = ({ label, name, onChange, placeholder, value, error, requi
                 </Button>
             </Group>
 
-            {error && <Field.ErrorText>{error}</Field.ErrorText>}
+            {error && <Field.ErrorText data-testid={`error-message-${name}`}>{error}</Field.ErrorText>}
         </Field.Root>
     )
 }

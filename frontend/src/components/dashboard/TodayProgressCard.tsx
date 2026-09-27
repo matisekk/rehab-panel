@@ -37,7 +37,7 @@ const TodayProgressCard = ({
     const weeklyBars = [60, 72, 94, 36, 28, 18, 10];
 
     return (
-        <Card.Root variant="outline" borderRadius="2xl">
+        <Card.Root variant="outline" borderRadius="2xl" data-testid="todayProgressCard">
             <Card.Body>
                 <Stack gap="5">
                     <Flex justify="space-between" align="flex-start" gap="4">

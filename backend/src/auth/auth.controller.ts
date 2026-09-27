@@ -42,7 +42,7 @@ export function logoutHandler(req: Request, res: Response) {
 }
 
 export function registerHandler(req: Request, res: Response) {
-    const { email, password, firstName, lastName } = req.body ?? {};
+    const { email, password, firstName, lastName, confirmPassword } = req.body ?? {};
 
     if (!email || !password || !firstName || !lastName) {
         return res.status(400).json({
@@ -65,6 +65,12 @@ export function registerHandler(req: Request, res: Response) {
     if (password.length < 6) {
         return res.status(400).json({
             error: "Password must be at least 6 characters long",
+        });
+    }
+
+    if (password !== confirmPassword) {
+        return res.status(400).json({
+            error: "Passwords must match",
         });
     }
 

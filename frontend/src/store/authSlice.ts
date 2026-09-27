@@ -6,7 +6,7 @@ import type {
     RegisterCredentials,
 } from "../types/authTypes";
 
-const STORAGE_KEY = "rehab-panel-token";
+export const STORAGE_KEY = "rehab-panel-token";
 
 type AuthState = {
     user: AuthUser | null;

@@ -15,7 +15,7 @@ const WeeklyProgressCard = ({
     const hasItems = items.length > 0;
 
     return (
-        <Card.Root variant="outline" borderRadius="2xl">
+        <Card.Root variant="outline" borderRadius="2xl" data-testid="weeklyProgresCard">
             <Card.Body>
                 <Stack gap="4">
                     <Heading size="md">{title}</Heading>
