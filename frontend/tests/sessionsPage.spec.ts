@@ -12,7 +12,7 @@ test.describe("Exercise Session", () => {
         await expect(page).toHaveURL("http://localhost:5173/app/dashboard");
 
         const exerciseFlow = createExerciseFlow(page);
-        await exerciseFlow.openFirstExerciseSession(0);
+        await exerciseFlow.openAvailableExerciseSession();
 
         await expect(page).toHaveURL(/\/sessions\/.+$/);
     })

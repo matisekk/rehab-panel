@@ -32,6 +32,7 @@ test.describe("Change Password Modal", () => {
         await changePasswordModal.updatePassword({ currentPassword: "Test1234!", newPassword: "Test1234!@", confirmPassword: "Test1234!@" });
 
         await expect(changePasswordModal.successToast).toBeVisible();
+        await changePasswordModal.successToast.getByRole('button').click();
         await expect(changePasswordModal.successToast).toBeHidden();
 
         //revert changes after update
@@ -46,6 +47,7 @@ test.describe("Change Password Modal", () => {
         const changePasswordModal = createChangePasswordModal(page);
         await changePasswordModal.updatePassword({ currentPassword: "Test1234!", newPassword: "Test1234!@", confirmPassword: "Test1234!@" });
         await expect(changePasswordModal.successToast).toBeVisible();
+        await changePasswordModal.successToast.getByRole('button').click();
         await expect(changePasswordModal.successToast).toBeHidden();
 
         //logout
@@ -62,7 +64,8 @@ test.describe("Change Password Modal", () => {
         await dashboardPage.openChangePasswordModal();
         await changePasswordModal.updatePassword({ currentPassword: "Test1234!@", newPassword: "Test1234!", confirmPassword: "Test1234!" })
         await expect(changePasswordModal.successToast).toBeVisible();
-
+        await changePasswordModal.successToast.getByRole('button').click();
+        await expect(changePasswordModal.successToast).toBeHidden();
     })
 
     //Negative sceranios

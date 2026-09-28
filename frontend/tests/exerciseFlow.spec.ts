@@ -2,6 +2,7 @@ import test, { expect } from "@playwright/test";
 import { createLoginPage } from "./pages/LoginPage";
 import { createDashboardPage } from "./pages/DashboardPage";
 import { createExerciseFlow } from "./pages/exerciseFlow";
+import { createSessionsPage } from './pages/sessionsPage';
 
 test.describe("Exercise Flow", () => {
     test.beforeEach(async ({ page }) => {
@@ -29,14 +30,14 @@ test.describe("Exercise Flow", () => {
     test("should open exercise session", async ({ page }) => {
         const exerciseFlow = createExerciseFlow(page);
 
-        await exerciseFlow.openFirstExerciseSession(0);
+        await exerciseFlow.openAvailableExerciseSession();
         await expect(page).toHaveURL(/\/sessions\/.+$/);
     });
 
     test("should display session content", async ({ page }) => {
         const exerciseFlow = createExerciseFlow(page);
 
-        await exerciseFlow.openFirstExerciseSession(0);
+        await exerciseFlow.openAvailableExerciseSession();
 
         await expect(page).toHaveURL(/\/sessions\/.+$/);
 
@@ -49,7 +50,19 @@ test.describe("Exercise Flow", () => {
     //Negative scenarios
     test("should not allow starting completed exercise", async ({ page }) => {
         const exerciseFlow = createExerciseFlow(page);
-        const completedExercise = exerciseFlow.exerciseCards.filter({ hasText: /completed/i }).first();
+        const sessionPage = createSessionsPage(page);
+        await exerciseFlow.openAvailableExerciseSession();
+        await expect(page).toHaveURL(/\/sessions\/.+$/);
+
+        await sessionPage.finishSession();
+        await expect(sessionPage.statusBadge).toHaveText(/completed/i);
+        await sessionPage.backToDashboardLink.click();
+
+        await expect(page).toHaveURL(/\/app\/dashboard$/);
+
+        const completedExercise = exerciseFlow.exerciseCards.first();
+
+        await expect(exerciseFlow.getExerciseStatus(0)).toHaveText(/completed/i);
 
         await expect(completedExercise.getByRole("button")).toBeDisabled();
     });
@@ -57,6 +70,6 @@ test.describe("Exercise Flow", () => {
     test("should handle invalid session id", async ({ page }) => {
         await page.goto("http://localhost:5173/sessions/invalid-session-id");
 
-        await expect(page.getByText(/not found|error|invalid/i)).toBeVisible();
+        await expect(page.getByText(/not found|error|invalid|Session not found/i)).toBeVisible();
     });
 })

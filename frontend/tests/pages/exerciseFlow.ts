@@ -6,9 +6,17 @@ export const createExerciseFlow = (page: Page) => {
     const getExerciseCard = (index: number) => {
         return exerciseCards.nth(index);
     };
+
+    const getAvailableExerciseCard = () => {
+        return exerciseCards.filter({
+            has: page.getByRole("button", { name: /start|continue/i }),
+        }).first();
+    };
+
     return {
-        openFirstExerciseSession: async (index: number) => {
-            await getExerciseCard(index).getByRole("button", { name: /start|continue/i }).click();
+        openAvailableExerciseSession: async () => {
+            const exerciseCard = getAvailableExerciseCard();
+            await exerciseCard.getByRole("button", { name: /start|continue/i }).click();
         },
 
         getExerciseHeading: (index: number) => {
@@ -23,6 +31,7 @@ export const createExerciseFlow = (page: Page) => {
             const card = exerciseCards.nth(index);
             return card.getByTestId(/^exercise-status-/);
         },
+        getAvailableExerciseCard,
         exerciseCards,
     };
 };
