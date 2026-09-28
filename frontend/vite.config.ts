@@ -6,9 +6,9 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
     proxy: {
-      "/api": "http://localhost:8080",
+      "/api": "http://backend:8080",
       "/ws": {
-        target: "ws://localhost:8080",
+        target: "ws://backend:8080",
         ws: true,
         changeOrigin: true,
       },
